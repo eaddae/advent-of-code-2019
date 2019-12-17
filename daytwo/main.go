@@ -18,7 +18,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(arbys)
+	fmt.Println(RunIntcode(arbys))
 }
 
 func MapToIntSlice(program string) ([]int, error) {
@@ -35,15 +35,16 @@ func MapToIntSlice(program string) ([]int, error) {
 	return arbynums, nil
 }
 
-/*func (program *[]int) RunAsIntcode() []int {
-	for i := 0, o := program[i]; i < len(program); i += 4 {
+func RunIntcode(program []int) []int {
+	for i := 0; i < len(program); i += 4 {
+		o := program[i]
 		if o == Add {
-			program[program[i + 3]] = program[i + 1] + program[i + 2]
+			program[program[i + 3]] = program[program[i + 1]] + program[program[i + 2]]
 		} else if o == Multiply {
-			program[program[i + 3]] = program[i + 1] * program[i + 2]
+			program[program[i + 3]] = program[program[i + 1]] * program[program[i + 2]]
 		} else if o == Halt {
 			return program
 		}
 	}
+	return program
 }
-*/

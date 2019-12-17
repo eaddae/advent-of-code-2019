@@ -28,5 +28,9 @@ func main() {
 }
 
 func FuelRequired(module int) int {
-	return module / 3 - 2
+	fuel := module / 3 - 2
+	if fuel <= 0 {
+		return 0
+	}
+	return fuel + FuelRequired(fuel)
 }
